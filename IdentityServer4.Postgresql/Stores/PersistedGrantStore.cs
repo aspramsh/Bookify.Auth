@@ -1,4 +1,5 @@
 using Marten;
+
 namespace IdentityServer4.Postgresql.Stores
 {
     using System.Collections.Generic;
