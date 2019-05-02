@@ -1,8 +1,9 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Postgresql.Entities;
 using IdentityServer4.Postgresql.Mappers;
-using System.Collections;
 using System.Collections.Generic;
+
 using ApiResource = IdentityServer4.Postgresql.Entities.ApiResource;
 using Client = IdentityServer4.Postgresql.Entities.Client;
 using IdentityResource = IdentityServer4.Postgresql.Entities.IdentityResource;
@@ -69,11 +70,11 @@ namespace Bookify.Auth.Configuration
                     {
                         new ClientScope
                         {
-                            Scope = IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                            Scope = IdentityServerConstants.StandardScopes.OpenId
                         },
                         new ClientScope
                         {
-                            Scope = IdentityServer4.IdentityServerConstants.StandardScopes.Profile
+                            Scope = IdentityServerConstants.StandardScopes.Profile
                         },
                         new ClientScope
                         {
