@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace IdentityServer4.Postgresql.Entities
 {
-    public class ApiScope
+    public class PostgresApiScope
     {
         public string Name { get; set; }
         public string DisplayName { get; set; }
@@ -13,7 +10,7 @@ namespace IdentityServer4.Postgresql.Entities
         public bool Required { get; set; }
         public bool Emphasize { get; set; }
         public bool ShowInDiscoveryDocument { get; set; } = true;
-        public List<ApiScopeClaim> UserClaims { get; set; }
+        public List<PostgresApiScopeClaim> UserClaims { get; set; }
 
     }
 }

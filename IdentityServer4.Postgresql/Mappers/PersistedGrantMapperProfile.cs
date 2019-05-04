@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using IdentityServer4.Models;
+using IdentityServer4.Postgresql.Entities;
 
 namespace IdentityServer4.Postgresql.Mappers
 {
@@ -6,10 +8,10 @@ namespace IdentityServer4.Postgresql.Mappers
     {
         public PersistedGrantMapperProfile()
         {
-            CreateMap<Entities.PersistedGrant, Models.PersistedGrant>(MemberList.Destination);
+            CreateMap<PostgresPersistedGrant, PersistedGrant>(MemberList.Destination);
 
             // model to entity
-            CreateMap<Models.PersistedGrant, Entities.PersistedGrant>(MemberList.Source);
+            CreateMap<PersistedGrant, PostgresPersistedGrant>(MemberList.Source);
         }
        
        

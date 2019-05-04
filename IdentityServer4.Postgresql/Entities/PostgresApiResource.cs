@@ -1,24 +1,21 @@
-﻿using Marten.Schema;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace IdentityServer4.Postgresql.Entities
 {
-    public class IdentityResource : EntityKey
+    public class PostgresApiResource : EntityKey
     {
-        public IdentityResource()
+        public PostgresApiResource()
         {
             Id = Guid.NewGuid().ToString();
         }
-
+        
         public bool Enabled { get; set; } = true;
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public string Description { get; set; }
-        public bool Required { get; set; }
-        public bool Emphasize { get; set; }
-        public bool ShowInDiscoveryDocument { get; set; } = true;
-        public List<IdentityClaim> UserClaims { get; set; }
+        public List<PostgresApiSecret> Secrets { get; set; }
+        public List<PostgresApiScope> Scopes { get; set; }
+        public List<PostgresApiResourceClaim> UserClaims { get; set; }
     }
-
 }

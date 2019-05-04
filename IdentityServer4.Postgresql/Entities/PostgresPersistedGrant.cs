@@ -1,11 +1,10 @@
-﻿using Marten.Schema;
-using System;
+﻿using System;
 
 namespace IdentityServer4.Postgresql.Entities
 {
-    public class PersistedGrant : EntityKey
+    public class PostgresPersistedGrant : EntityKey
     {
-        public PersistedGrant()
+        public PostgresPersistedGrant()
         {
             Id = Guid.NewGuid().ToString();
         }

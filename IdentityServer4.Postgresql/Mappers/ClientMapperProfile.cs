@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
+using IdentityServer4.Models;
 using IdentityServer4.Postgresql.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IdentityServer4.Postgresql.Mappers
 {
@@ -11,7 +9,7 @@ namespace IdentityServer4.Postgresql.Mappers
     {
         public ClientMapperProfile()
         {
-            CreateMap<Client, Models.Client>(MemberList.Destination)
+            CreateMap<PostgresClient, Client>(MemberList.Destination)
                 .ForMember(x => x.AllowedGrantTypes,
                     opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => x.GrantType)))
                 .ForMember(x => x.RedirectUris, opt => opt.MapFrom(src => src.RedirectUris.Select(x => x.RedirectUri)))
@@ -25,32 +23,32 @@ namespace IdentityServer4.Postgresql.Mappers
                 .ForMember(x => x.AllowedCorsOrigins,
                     opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => x.Origin)));
 
-            CreateMap<ClientSecret, Models.Secret>(MemberList.Destination)
+            CreateMap<PostgresClientSecret, Secret>(MemberList.Destination)
                 .ForMember(dest => dest.Type, opt => opt.Condition(srs => srs != null));
 
             // model to entity
-            CreateMap<Models.Client, Client>(MemberList.Source)
+            CreateMap<Client, PostgresClient>(MemberList.Source)
                 .ForMember(x => x.AllowedGrantTypes,
-                    opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => new ClientGrantType { GrantType = x })))
+                    opt => opt.MapFrom(src => src.AllowedGrantTypes.Select(x => new PostgresClientGrantType { GrantType = x })))
                 .ForMember(x => x.RedirectUris,
-                    opt => opt.MapFrom(src => src.RedirectUris.Select(x => new ClientRedirectUri { RedirectUri = x })))
+                    opt => opt.MapFrom(src => src.RedirectUris.Select(x => new PostgresClientRedirectUri { RedirectUri = x })))
                 .ForMember(x => x.PostLogoutRedirectUris,
                     opt =>
                         opt.MapFrom(
                             src =>
                                 src.PostLogoutRedirectUris.Select(
-                                    x => new ClientPostLogoutRedirectUri { PostLogoutRedirectUri = x })))
+                                    x => new PostgresClientPostLogoutRedirectUri { PostLogoutRedirectUri = x })))
                 .ForMember(x => x.AllowedScopes,
-                    opt => opt.MapFrom(src => src.AllowedScopes.Select(x => new ClientScope { Scope = x })))
+                    opt => opt.MapFrom(src => src.AllowedScopes.Select(x => new PostgresClientScope { Scope = x })))
                 .ForMember(x => x.Claims,
-                    opt => opt.MapFrom(src => src.Claims.Select(x => new ClientClaim { Type = x.Type, Value = x.Value })))
+                    opt => opt.MapFrom(src => src.Claims.Select(x => new PostgresClientClaim { Type = x.Type, Value = x.Value })))
                 .ForMember(x => x.IdentityProviderRestrictions,
                     opt =>
                         opt.MapFrom(
-                            src => src.IdentityProviderRestrictions.Select(x => new ClientIdPRestriction { Provider = x })))
+                            src => src.IdentityProviderRestrictions.Select(x => new PostgresClientIdPRestriction { Provider = x })))
                 .ForMember(x => x.AllowedCorsOrigins,
-                    opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => new ClientCorsOrigin { Origin = x })));
-            CreateMap<Models.Secret, ClientSecret>(MemberList.Source);
+                    opt => opt.MapFrom(src => src.AllowedCorsOrigins.Select(x => new PostgresClientCorsOrigin { Origin = x })));
+            CreateMap<Secret, PostgresClientSecret>(MemberList.Source);
         }
     }
 }

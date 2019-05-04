@@ -1,28 +1,26 @@
-﻿using IdentityServer4.Models;
+﻿using IdentityServer4;
+using IdentityServer4.Models;
 using IdentityServer4.Postgresql.Entities;
 using IdentityServer4.Postgresql.Mappers;
-using System.Collections;
 using System.Collections.Generic;
-using ApiResource = IdentityServer4.Postgresql.Entities.ApiResource;
-using Client = IdentityServer4.Postgresql.Entities.Client;
-using IdentityResource = IdentityServer4.Postgresql.Entities.IdentityResource;
+using static IdentityServer4.Models.IdentityResources;
 
 namespace Bookify.Auth.Configuration
 {
     public static class DataSeed
     {
-        public static IEnumerable<ApiResource> GetApiResources()
+        public static IEnumerable<PostgresApiResource> GetApiResources()
         {
-            return new List<ApiResource>
+            return new List<PostgresApiResource>
             {
-                new ApiResource
+                new PostgresApiResource
                 {
                     Name = "bookifyApi",
                     Description = "Bookify API",
                     DisplayName = "Bookify API",
-                    Scopes = new List<ApiScope>
+                    Scopes = new List<PostgresApiScope>
                     {
-                        new ApiScope
+                        new PostgresApiScope
                         {
                             Name = "bookifyApi",
                             DisplayName = "Bookify API"
@@ -32,57 +30,57 @@ namespace Bookify.Auth.Configuration
             };
         }
 
-        public static IEnumerable<Client> GetClients()
+        public static IEnumerable<PostgresClient> GetClients()
         {
-            return new List<Client>
+            return new List<PostgresClient>
             {
-                new Client
+                new PostgresClient
                 {
                     AllowOfflineAccess = true,
                     Id = "bookifyApi",
                     ClientId = "bookifyApi",
                     ClientName = "Bookify API",
-                    AllowedGrantTypes =  new List<ClientGrantType>
+                    AllowedGrantTypes =  new List<PostgresClientGrantType>
                     {
-                        new ClientGrantType
+                        new PostgresClientGrantType
                         {
                             GrantType = GrantType.ClientCredentials
                         }
                     },
-                    AllowedCorsOrigins =  new List<ClientCorsOrigin>
+                    AllowedCorsOrigins =  new List<PostgresClientCorsOrigin>
                     {
-                        new ClientCorsOrigin
+                        new PostgresClientCorsOrigin
                         {
                             Origin = "https://localhost:5001"
                         }
                     },
                     RequireClientSecret = true,
-                    ClientSecrets = new List<ClientSecret>
+                    ClientSecrets = new List<PostgresClientSecret>
                     {
-                        new ClientSecret
+                        new PostgresClientSecret
                         {
                             Value = "secret".Sha256()
                         }
                     },
                     RequireConsent = false,
-                    AllowedScopes = new List<ClientScope>
+                    AllowedScopes = new List<PostgresClientScope>
                     {
-                        new ClientScope
+                        new PostgresClientScope
                         {
-                            Scope = IdentityServer4.IdentityServerConstants.StandardScopes.OpenId
+                            Scope = IdentityServerConstants.StandardScopes.OpenId
                         },
-                        new ClientScope
+                        new PostgresClientScope
                         {
-                            Scope = IdentityServer4.IdentityServerConstants.StandardScopes.Profile
+                            Scope = IdentityServerConstants.StandardScopes.Profile
                         },
-                        new ClientScope
+                        new PostgresClientScope
                         {
                             Scope = "bookifyApi"
                         }
                     },
-                    RedirectUris = new List<ClientRedirectUri>
+                    RedirectUris = new List<PostgresClientRedirectUri>
                     {
-                        new ClientRedirectUri
+                        new PostgresClientRedirectUri
                         {
                             RedirectUri = "https://localhost:5001/signin-oidc"
                         }
@@ -91,14 +89,14 @@ namespace Bookify.Auth.Configuration
             };
         }
 
-        public static IEnumerable<IdentityResource> GetIdentityResources()
+        public static IEnumerable<PostgresIdentityResource> GetIdentityResources()
         {
-            return new List<IdentityResource>
+            return new List<PostgresIdentityResource>
             {
-                new IdentityResources.OpenId().ToEntity(),
-                new IdentityResources.Profile().ToEntity(),
-                new IdentityResources.Email().ToEntity(),
-                new IdentityResources.Phone().ToEntity()
+                new OpenId().ToEntity(),
+                new Profile().ToEntity(),
+                new Email().ToEntity(),
+                new Phone().ToEntity()
             };
         }
     }

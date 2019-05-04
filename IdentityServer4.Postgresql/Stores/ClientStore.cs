@@ -3,6 +3,7 @@ using IdentityServer4.Models;
 using IdentityServer4.Stores;
 using Marten;
 using IdentityServer4.Postgresql.Mappers;
+using IdentityServer4.Postgresql.Entities;
 
 namespace IdentityServer4.Postgresql.Stores
 {
@@ -15,7 +16,7 @@ namespace IdentityServer4.Postgresql.Stores
 		}
 		public async Task<Client> FindClientByIdAsync(string clientId)
 		{
-			var client = await _documentSession.Query<Entities.Client>().FirstOrDefaultAsync(x => x.ClientId == clientId);
+			var client = await _documentSession.Query<PostgresClient>().FirstOrDefaultAsync(x => x.ClientId == clientId);
 			return client?.ToModel();
 		}
 	}

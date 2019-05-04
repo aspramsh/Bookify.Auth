@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using IdentityServer4.Models;
+using IdentityServer4.Postgresql.Entities;
 
 namespace IdentityServer4.Postgresql.Mappers
 {
@@ -12,14 +14,14 @@ namespace IdentityServer4.Postgresql.Mappers
         }
         public static IMapper Mapper { get; }
 
-        public static Models.ApiResource ToModel(this Entities.ApiResource resource)
+        public static ApiResource ToModel(this PostgresApiResource resource)
         {
-            return resource == null ? null : Mapper.Map<Models.ApiResource>(resource);
+            return resource == null ? null : Mapper.Map<ApiResource>(resource);
         }
 
-        public static Entities.ApiResource ToEntity(this Models.ApiResource resource)
+        public static PostgresApiResource ToEntity(this ApiResource resource)
         {
-            return resource == null ? null : Mapper.Map<Entities.ApiResource>(resource);
+            return resource == null ? null : Mapper.Map<PostgresApiResource>(resource);
         }
     }
 }

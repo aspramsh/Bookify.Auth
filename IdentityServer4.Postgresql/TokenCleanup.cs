@@ -84,7 +84,7 @@ namespace IdentityServer4.Postgresql
                 {
                     using (var session = serviceScope.ServiceProvider.GetService<IDocumentSession>())
                     {
-                        session.DeleteWhere<PersistedGrant>(x => x.Expiration < DateTimeOffset.UtcNow);
+                        session.DeleteWhere<PostgresPersistedGrant>(x => x.Expiration < DateTimeOffset.UtcNow);
                         session.SaveChanges();
                     }
                 }

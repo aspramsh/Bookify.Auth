@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IdentityServer4.Models;
+using IdentityServer4.Postgresql.Entities;
 
 namespace IdentityServer4.Postgresql.Mappers
 {
@@ -12,21 +13,21 @@ namespace IdentityServer4.Postgresql.Mappers
         }
         public static IMapper Mapper { get; }
 
-        public static PersistedGrant ToModel(this Entities.PersistedGrant token)
+        public static PersistedGrant ToModel(this PostgresPersistedGrant token)
         {
             if (token == null) return null;
 
-            return Mapper.Map<Entities.PersistedGrant, PersistedGrant>(token);
+            return Mapper.Map<PostgresPersistedGrant, PersistedGrant>(token);
         }
 
-        public static Entities.PersistedGrant ToEntity(this PersistedGrant token)
+        public static PostgresPersistedGrant ToEntity(this PersistedGrant token)
         {
             if (token == null) return null;
 
-            return Mapper.Map<PersistedGrant, Entities.PersistedGrant>(token);
+            return Mapper.Map<PersistedGrant, PostgresPersistedGrant>(token);
         }
 
-        public static void UpdateEntity(this PersistedGrant token, Entities.PersistedGrant target)
+        public static void UpdateEntity(this PersistedGrant token, PostgresPersistedGrant target)
         {
             Mapper.Map(token, target);
         }
