@@ -5,32 +5,32 @@ using static IdentityServer4.IdentityServerConstants;
 
 namespace IdentityServer4.Postgresql.Entities
 {
-	public class Client : EntityKey
+	public class PostgresClient : EntityKey
 	{
-		public Client()
+		public PostgresClient()
 		{
 			Id = Guid.NewGuid().ToString();
 		}
 		public bool Enabled { get; set; } = true;
 		public string ClientId { get; set; }
 		public string ProtocolType { get; set; } = ProtocolTypes.OpenIdConnect;
-		public List<ClientSecret> ClientSecrets { get; set; }
+		public List<PostgresClientSecret> ClientSecrets { get; set; }
 		public bool RequireClientSecret { get; set; } = true;
 		public string ClientName { get; set; }
 		public string ClientUri { get; set; }
 		public string LogoUri { get; set; }
 		public bool RequireConsent { get; set; } = true;
 		public bool AllowRememberConsent { get; set; } = true;
-		public List<ClientGrantType> AllowedGrantTypes { get; set; }
+		public List<PostgresClientGrantType> AllowedGrantTypes { get; set; }
 		public bool RequirePkce { get; set; }
 		public bool AllowPlainTextPkce { get; set; }
 		public bool AllowAccessTokensViaBrowser { get; set; }
-		public List<ClientRedirectUri> RedirectUris { get; set; }
-		public List<ClientPostLogoutRedirectUri> PostLogoutRedirectUris { get; set; }
+		public List<PostgresClientRedirectUri> RedirectUris { get; set; }
+		public List<PostgresClientPostLogoutRedirectUri> PostLogoutRedirectUris { get; set; }
 		public string LogoutUri { get; set; }
 		public bool LogoutSessionRequired { get; set; } = true;
 		public bool AllowOfflineAccess { get; set; }
-		public List<ClientScope> AllowedScopes { get; set; }
+		public List<PostgresClientScope> AllowedScopes { get; set; }
 		public int IdentityTokenLifetime { get; set; } = 300;
 		public int AccessTokenLifetime { get; set; } = 3600;
 		public int AuthorizationCodeLifetime { get; set; } = 300;
@@ -41,12 +41,12 @@ namespace IdentityServer4.Postgresql.Entities
 		public int RefreshTokenExpiration { get; set; } = (int)TokenExpiration.Absolute;
 		public int AccessTokenType { get; set; } = 0; // AccessTokenType.Jwt;
 		public bool EnableLocalLogin { get; set; } = true;
-		public List<ClientIdPRestriction> IdentityProviderRestrictions { get; set; }
+		public List<PostgresClientIdPRestriction> IdentityProviderRestrictions { get; set; }
 		public bool IncludeJwtId { get; set; }
-		public List<ClientClaim> Claims { get; set; }
+		public List<PostgresClientClaim> Claims { get; set; }
 		public bool AlwaysSendClientClaims { get; set; }
 		public bool PrefixClientClaims { get; set; } = true;
-		public List<ClientCorsOrigin> AllowedCorsOrigins { get; set; }
+		public List<PostgresClientCorsOrigin> AllowedCorsOrigins { get; set; }
 		public bool AlwaysIncludeUserClaimsInIdToken { get; set; }
 		/// <summary>
 		/// Specifies logout URI at client for HTTP front-channel based logout.

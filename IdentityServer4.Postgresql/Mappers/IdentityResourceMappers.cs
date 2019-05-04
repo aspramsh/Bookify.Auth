@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IdentityServer4.Models;
+using IdentityServer4.Postgresql.Entities;
 
 namespace IdentityServer4.Postgresql.Mappers
 {
@@ -12,18 +13,18 @@ namespace IdentityServer4.Postgresql.Mappers
         }
         public static IMapper Mapper { get; }
 
-        public static IdentityResource ToModel(this Entities.IdentityResource identityResource)
+        public static IdentityResource ToModel(this PostgresIdentityResource identityResource)
         {
             if (identityResource == null) return null;
 
-            return Mapper.Map<Entities.IdentityResource, IdentityResource>(identityResource);
+            return Mapper.Map<PostgresIdentityResource, IdentityResource>(identityResource);
         }
 
-        public static Entities.IdentityResource ToEntity(this IdentityResource identityResource)
+        public static PostgresIdentityResource ToEntity(this IdentityResource identityResource)
         {
             if (identityResource == null) return null;
 
-            return Mapper.Map<IdentityResource, Entities.IdentityResource>(identityResource);
+            return Mapper.Map<IdentityResource, PostgresIdentityResource>(identityResource);
         }
     }
 }
