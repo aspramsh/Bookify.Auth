@@ -35,12 +35,6 @@ namespace Bookify.Auth
             services.AddDbContext<AuthDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("IdentityServerConnection")));
 
-            services.AddDbContext<SnakeCasePersistedGrantDbContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("IdentityServerConnection")));
-
-            services.AddDbContext<SnakeCaseConfigurationDbContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("IdentityServerConnection")));
-
             var bookifyApiAddress = Configuration.GetValue<string>("BookifyApiAddress");
             services.AddSingleton<IHttpClientHelper, HttpClientHelper>(client => new HttpClientHelper(bookifyApiAddress));
 

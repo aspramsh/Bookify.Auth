@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Auth", "Bookify.Auth\Bookify.Auth.csproj", "{1DCB9741-1644-4F1B-9191-54D8D7C18288}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Servces", "04. Servces", "{B750E18A-BF45-4B09-9B9A-AEBDE1144D31}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Services", "04. Services", "{B750E18A-BF45-4B09-9B9A-AEBDE1144D31}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Infrastructure", "01. Infrastructure", "{2D3AFF5A-8DEA-4966-A89F-8082CC3400C7}"
 EndProject
@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Business", "02. Busines
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. DataAccess", "03. DataAccess", "{A526B1E8-53A0-41B3-A55F-D27EDB4D1BF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Auth.DataAccess", "Bookify.Auth.DataAccess\Bookify.Auth.DataAccess.csproj", "{FA5BF083-9A38-4E43-8D87-682C13E4E756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Auth.DataAccess", "Bookify.Auth.DataAccess\Bookify.Auth.DataAccess.csproj", "{FA5BF083-9A38-4E43-8D87-682C13E4E756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Auth.Infrastructure", "Bookify.Auth.Infrastructure\Bookify.Auth.Infrastructure.csproj", "{1A1695E9-491E-4B76-B7CA-0ADC44C50986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Auth.Infrastructure", "Bookify.Auth.Infrastructure\Bookify.Auth.Infrastructure.csproj", "{1A1695E9-491E-4B76-B7CA-0ADC44C50986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Auth.Business", "Bookify.Auth.Business\Bookify.Auth.Business.csproj", "{E8315839-015E-40F1-A20F-89D3F15DE179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookify.Auth.Business", "Bookify.Auth.Business\Bookify.Auth.Business.csproj", "{E8315839-015E-40F1-A20F-89D3F15DE179}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

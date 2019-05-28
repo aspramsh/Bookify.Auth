@@ -30,13 +30,13 @@ namespace Bookify.Auth.Business.ProfileValidator
             {
                 RequestLoginModel request = new RequestLoginModel
                 {
-                    Username = context.UserName,
+                    Email = context.UserName,
                     Password = context.Password
                 };
 
                 ResponseAuthorizationModel response =
                     await _httpClientHelper.PostAsync<RequestLoginModel, ResponseAuthorizationModel>(
-                        $"api/v1.0/Users/authorization",
+                        $"api/v1/Users/authorization",
                         request);
                 if (response != null)
                 {
@@ -47,12 +47,18 @@ namespace Bookify.Auth.Business.ProfileValidator
                         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean)
                     };
 
-                    foreach (var claim in response.Claims)
+                    foreach (var item in response.Claims)
                     {
-                        claims.Add(new Claim(claim.Type, claim.Name));
+                        claims.Add(new Claim(item.Type, item.Value));
                     }
 
-                    context.Result = new GrantValidationResult(response.UserId.ToString(), AuthorizationMethod, claims);
+                    var result = new Dictionary<string, object>
+                    {
+                        { "Username", response.UserName },
+                        { "Email", response.Email }
+                    };
+
+                    context.Result = new GrantValidationResult(response.UserId.ToString(), AuthorizationMethod, claims, customResponse: result);
 
                     await Task.FromResult(context.Result);
                 }

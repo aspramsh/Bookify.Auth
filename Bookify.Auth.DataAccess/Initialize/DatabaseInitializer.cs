@@ -1,4 +1,5 @@
 ﻿using Bookify.Auth.DataAccess.DbContexts;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -13,18 +14,18 @@ namespace Bookify.Auth.DataAccess.Initialize
         {
             context.Database.EnsureCreated();
 
-            InitializeTokeServerConfigurationDatabase(app);
+            InitializeTokenServerConfigurationDatabase(app);
 
             context.SaveChanges();
         }
 
-        private static void InitializeTokeServerConfigurationDatabase(IApplicationBuilder app)
+        private static void InitializeTokenServerConfigurationDatabase(IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                scope.ServiceProvider.GetRequiredService<SnakeCasePersistedGrantDbContext>().Database.Migrate();
+                scope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
-                var context = scope.ServiceProvider.GetRequiredService<SnakeCaseConfigurationDbContext>();
+                var context = scope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
                 context.Database.Migrate();
                 if (!context.Clients.Any())
                 {
