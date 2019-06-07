@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Bookify.Auth.DataAccess.Migrations.PersistedGrantDb
+namespace Bookify.Auth.DataAccess.PersistedGrantDb
 {
     public partial class InitialCreate : Migration
     {

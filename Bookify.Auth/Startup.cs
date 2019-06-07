@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Bookify.Auth
 {
@@ -43,6 +44,13 @@ namespace Bookify.Auth
             services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>()
                 .AddTransient<IProfileService, ProfileService>();
 
+            #region swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Bookify Auth", Version = "v1" });
+            });
+            #endregion
+
             services.AddIdentityServer()
                     .AddDeveloperSigningCredential()
                     .AddConfigurationStore(option =>
@@ -64,6 +72,19 @@ namespace Bookify.Auth
             {
                 app.UseHsts();
             }
+
+            #region swagger
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bookify Auth V1");
+            });
+
+            #endregion
 
             app.UseIdentityServer();
             app.UseHttpsRedirection();

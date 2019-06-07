@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Bookify.Auth.DataAccess.Migrations.ConfigurationDb
+namespace Bookify.Auth.DataAccess.ConfigurationDb
 {
     public partial class InitialCreate : Migration
     {
