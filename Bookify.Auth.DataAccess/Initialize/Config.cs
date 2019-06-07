@@ -11,8 +11,7 @@ namespace Bookify.Auth.DataAccess.Initialize
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                new IdentityResources.Email()
+                new IdentityResources.Profile()
             };
         }
 
@@ -36,12 +35,11 @@ namespace Bookify.Auth.DataAccess.Initialize
                 {
                     ClientId = "BookifyAPI",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    AllowOfflineAccess = true,
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "bookifyapi", StandardScopes.OfflineAccess },
+                    AllowedScopes = { "bookifyapi" },
                 }
             };
         }
