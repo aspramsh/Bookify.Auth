@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace Bookify.Auth
 {
@@ -31,7 +31,10 @@ namespace Bookify.Auth
                     .AllowAnyHeader();
             }));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<AuthDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("IdentityServerConnection")));
@@ -47,7 +50,7 @@ namespace Bookify.Auth
             #region swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Bookify Auth", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bookify Auth", Version = "v1" });
             });
             #endregion
 
